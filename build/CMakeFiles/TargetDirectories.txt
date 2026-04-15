@@ -1,3 +1,0 @@
-/home/inf/Programming/Games/bullet-hand/build/CMakeFiles/game.dir
-/home/inf/Programming/Games/bullet-hand/build/CMakeFiles/edit_cache.dir
-/home/inf/Programming/Games/bullet-hand/build/CMakeFiles/rebuild_cache.dir

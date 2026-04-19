@@ -2,7 +2,7 @@
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     raylib
-    
+
     libGL
 
     # X11 dependencies
@@ -18,14 +18,12 @@ pkgs.mkShell {
 
     cmake
     ninja
+    ccache
 
     clang-tools
   ];
 
-  shellHook = ''
-  '';
-
-  CMAKE_GENERATOR = "Ninja";
+  CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
 
   # Audio dependencies
   LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [pkgs.alsa-lib];

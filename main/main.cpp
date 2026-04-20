@@ -25,15 +25,18 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "Bullet hand");
 
     Rectangle player = { 400, 280, 40, 40 };
-    int spacing = 0;
+    constexpr static int spacing = 0;
+    constexpr static int image_size = 50;
 
 
-    Image hand_free_img = LoadImage("assets/hand_free.png");  // Load image data into CPU memory (RAM)
+    Image hand_free_img = LoadImage("assets/game_assets/hand_free.png");  // Load image data into CPU memory (RAM)
+    ImageResize(&hand_free_img, image_size, image_size);
     Texture2D hand_free_tex = LoadTextureFromImage(hand_free_img);  // Image converted to texture, GPU memory (RAM -> VRAM)
     UnloadImage(hand_free_img);                               // Unload image data from CPU memory (RAM)
     // UnloadTexture(hand_free_tex);                           // Unload texture from GPU memory (VRAM)
 
-    Image hand_grab_img = LoadImage("assets/hand_grab.png");  // Load image data into CPU memory (RAM)
+    Image hand_grab_img = LoadImage("assets/game_assets/hand_grab.png");  // Load image data into CPU memory (RAM)
+    ImageResize(&hand_grab_img, image_size, image_size);
     Texture2D hand_grab_tex = LoadTextureFromImage(hand_grab_img);  // Image converted to texture, GPU memory (RAM -> VRAM)
     UnloadImage(hand_grab_img);                               // Unload image data from CPU memory (RAM)
     // UnloadTexture(hand_grab_tex);                           // Unload texture from GPU memory (VRAM)
@@ -85,10 +88,9 @@ int main(void)
 
                 Vector2 fd = {12, 12};
 
-                int hand_shift = 0.0;
-                DrawTextureEx( IsMouseButtonDown(MOUSE_LEFT_BUTTON) ? hand_grab_tex : hand_free_tex
-                             , {(float) GetMouseX(), (float) GetMouseY() + hand_shift }
-                             , 0, 0.3, WHITE);
+                DrawTextureV( IsMouseButtonDown(MOUSE_LEFT_BUTTON) ? hand_grab_tex : hand_free_tex
+                             , {(float) GetMouseX(), (float) GetMouseY() + image_size }
+                             , WHITE);
 
             EndMode2D();
 
